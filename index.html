@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de Marco Von Fürstenberg, desarrollador Fullstack especializado en React 18, Fastify, TypeScript, Stripe y automatización con n8n.">
+    <title>Marco Von Fürstenberg — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Barra de progreso de scroll -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Header con navegación -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">Marco<span class="logo-dot">.</span></div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir o cerrar menú de navegación" aria-controls="mainNav" aria-expanded="false" type="button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav" id="mainNav">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#proyectos" class="nav-link">Proyectos</a>
+                <a href="#habilidades" class="nav-link">Habilidades</a>
+                <a href="#sobre-mi" class="nav-link">Sobre mí</a>
+                <a href="#testimonios" class="nav-link">Testimonios</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
+                <button class="theme-toggle" id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema">
+                    <span class="theme-icon theme-icon-dark">🌙</span>
+                    <span class="theme-icon theme-icon-light">☀️</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección Hero -->
+        <section id="inicio" class="hero">
+            <div class="hero-aurora"></div>
+            <div class="container hero-layout">
+                <div class="hero-content">
+                    <div class="profile-img-wrapper">
+                        <img src="https://media.licdn.com/dms/image/v2/D4E35AQHka_Kk0q-h3w/profile-framedphoto-shrink_400_400/B4EZuZSNRUGoAc-/0/1767803245924?e=1773842400&v=beta&t=_w_DgzAhtxAJmKmJ2eb5HyaR-Pn3nwjNP-AfZivmwm4" alt="Marco Von Fürstenberg" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Marco+Von+Furstenberg&size=200&background=6366f1&color=fff&bold=true&font-size=0.4'" crossorigin="anonymous">
+                    </div>
+                    <p class="hero-greeting">Hola, soy Marco Von Fürstenberg</p>
+                    <h1 class="hero-title"><span class="typewriter">Fullstack Dev · React · Node · IA</span></h1>
+                    <p class="hero-subtitle">Desarrollo APIs con Fastify y TypeScript, interfaces con React 18, flujos de pago con Stripe y automatizaciones con n8n — entregables claros, testeables y listos para producción.</p>
+                    <div class="hero-highlights" aria-label="Resumen rápido de tecnologías y especialidades">
+                        <span class="highlight-chip">React 18 + TypeScript</span>
+                        <span class="highlight-chip">Node.js · Fastify · REST</span>
+                        <span class="highlight-chip">Stripe · Pagos recurrentes</span>
+                        <span class="highlight-chip">n8n · Automatización IA</span>
+                    </div>
+                    <div class="hero-cta">
+                        <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+                        <a href="#contacto" class="btn btn-outline">Hablemos</a>
+                    </div>
+                </div>
+                <aside class="hero-visual" aria-label="Visualización 3D interactiva">
+                    <div class="hero-visual-shell" id="hero3dArea">
+                        <canvas id="hero3dCanvas" aria-hidden="true"></canvas>
+                        <p class="hero-visual-caption">Cubo reactivo al scroll y a las secciones</p>
+                    </div>
+                    <ul class="hero-metrics" aria-label="Stack técnico principal">
+                        <li><strong>Stack principal</strong><span>React 18 · Fastify · Prisma · PostgreSQL</span></li>
+                        <li><strong>Infraestructura</strong><span>Docker · Redis · AWS S3 · CI/CD</span></li>
+                        <li><strong>Integraciones</strong><span>Stripe · n8n · APIs REST · Webhooks</span></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Sección Proyectos -->
+        <section id="proyectos" class="projects">
+            <div class="container">
+                <h2 class="section-title">Proyectos Destacados</h2>
+                <p class="projects-intro">
+                    Catálogo organizado por categorías con enlace al repositorio, tecnologías utilizadas y previsualización de cada proyecto.
+                </p>
+                <div id="projectCategories" class="project-categories" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <!-- Sección Habilidades -->
+        <section id="habilidades" class="skills">
+            <div class="container">
+                <h2 class="section-title">Habilidades</h2>
+                <p class="skills-intro">
+                    Tecnologías y herramientas que uso en proyectos reales: desde interfaces con React hasta infraestructura con Docker, colas con Redis y pagos con Stripe.
+                </p>
+                <div class="skills-grid">
+                    <!-- Categoría 1 -->
+                    <div class="skills-category">
+                        <h3 class="skills-category-title">Frontend</h3>
+                        <div class="skills-list">
+                            <span class="skill-pill">HTML5</span>
+                            <span class="skill-pill">CSS3</span>
+                            <span class="skill-pill">JavaScript</span>
+                            <span class="skill-pill">TypeScript</span>
+                            <span class="skill-pill">React 18</span>
+                            <span class="skill-pill">TanStack Query</span>
+                            <span class="skill-pill">Zustand</span>
+                            <span class="skill-pill">Tailwind CSS</span>
+                            <span class="skill-pill">Vite</span>
+                            <span class="skill-pill">Responsive UI</span>
+                        </div>
+                    </div>
+
+                    <!-- Categoría 2 -->
+                    <div class="skills-category">
+                        <h3 class="skills-category-title">Backend</h3>
+                        <div class="skills-list">
+                            <span class="skill-pill">Node.js</span>
+                            <span class="skill-pill">Fastify</span>
+                            <span class="skill-pill">TypeScript</span>
+                            <span class="skill-pill">Prisma ORM</span>
+                            <span class="skill-pill">PostgreSQL</span>
+                            <span class="skill-pill">Redis · Bull/BullMQ</span>
+                            <span class="skill-pill">JWT · Auth</span>
+                            <span class="skill-pill">APIs REST</span>
+                            <span class="skill-pill">Python</span>
+                        </div>
+                    </div>
+
+                    <!-- Categoría 3 -->
+                    <div class="skills-category">
+                        <h3 class="skills-category-title">Infraestructura e Integraciones</h3>
+                        <div class="skills-list">
+                            <span class="skill-pill">Docker</span>
+                            <span class="skill-pill">AWS S3</span>
+                            <span class="skill-pill">Stripe</span>
+                            <span class="skill-pill">Replicate AI</span>
+                            <span class="skill-pill">n8n</span>
+                            <span class="skill-pill">Make / Zapier</span>
+                            <span class="skill-pill">Git · GitHub</span>
+                            <span class="skill-pill">CI/CD</span>
+                            <span class="skill-pill">Linux</span>
+                        </div>
+                    </div>
+
+                    <!-- Categoría 4 -->
+                    <div class="skills-category">
+                        <h3 class="skills-category-title">Herramientas</h3>
+                        <div class="skills-list">
+                            <span class="skill-pill">Figma</span>
+                            <span class="skill-pill">VS Code</span>
+                            <span class="skill-pill">Webpack · Vite</span>
+                            <span class="skill-pill">Postman · Insomnia</span>
+                            <span class="skill-pill">Prisma Studio</span>
+                            <span class="skill-pill">pgAdmin</span>
+                            <span class="skill-pill">Jira</span>
+                            <span class="skill-pill">Documentación técnica</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Sobre mí -->
+        <section id="sobre-mi" class="about">
+            <div class="container">
+                <h2 class="section-title">Sobre mí</h2>
+                <div class="about-content">
+                    <p>
+                        Desarrollo aplicaciones web de extremo a extremo: APIs REST con Fastify y TypeScript, autenticación con JWT, colas de trabajo con Bull/Redis, almacenamiento en AWS S3 y pagos recurrentes con Stripe. En el frontend trabajo con React 18, TanStack Query y Zustand, y despliego con Docker en entornos reales.
+                    </p>
+                    <p>
+                        También automatizo flujos de negocio con n8n e integro servicios de IA via Replicate para procesar audio, texto e imágenes. Me interesa el trabajo donde la tecnología resuelve un problema concreto — entregables claros, código mantenible y documentación que no hay que adivinar. Abierto a incorporarme a un equipo de producto o a proyectos freelance bien definidos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Testimonios -->
+        <section id="testimonios" class="testimonials">
+            <div class="container">
+                <h2 class="section-title">Testimonios</h2>
+                <div class="testimonials-grid">
+                    <!-- Testimonio 1 -->
+                    <article class="testimonial-card">
+                        <p class="testimonial-text">
+                            "Teníamos los pedidos repartidos entre llamadas, WhatsApp y hojas de cálculo. Marco montó una web con flujo de compra completo y pasarela de pago: desde entonces el proceso de pedido es automático y los errores por comunicación desaparecieron. Además, entregó en el plazo que acordamos."
+                        </p>
+                        <div class="testimonial-author">
+                            <strong>Carlos Mendez</strong>
+                            <span class="testimonial-role">Dueño de pastelería online, Madrid</span>
+                        </div>
+                    </article>
+
+                    <!-- Testimonio 2 -->
+                    <article class="testimonial-card">
+                        <p class="testimonial-text">
+                            "Necesitábamos presentar el producto a inversores y la landing no transmitía lo que hacíamos. Marco reorganizó la estructura, reescribió los textos clave y dejó el código limpio para que pudiéramos iterar rápido. El resultado fue una presentación que pasó a contar la historia correcta."
+                        </p>
+                        <div class="testimonial-author">
+                            <strong>Laura García</strong>
+                            <span class="testimonial-role">Responsable de producto, startup SaaS</span>
+                        </div>
+                    </article>
+
+                    <!-- Testimonio 3 -->
+                    <article class="testimonial-card">
+                        <p class="testimonial-text">
+                            "Lo que más valoramos fue que antes de escribir una línea de código preguntó qué problema queríamos resolver. Propuso una solución más simple de la que teníamos en mente, más fácil de mantener y que encajaba con nuestro stack. Eso es lo que diferencia a un desarrollador que piensa del que solo ejecuta."
+                        </p>
+                        <div class="testimonial-author">
+                            <strong>Juan Pérez</strong>
+                            <span class="testimonial-role">Fundador, proyecto digital en fase de crecimiento</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contacto" class="contact">
+            <div class="container">
+                <h2 class="section-title">Contacto</h2>
+                <p class="contact-intro">
+                    Si estás valorando incorporar a un desarrollador a tu equipo o necesitas sacar adelante una web, automatización o herramienta interna para tu negocio, podemos hablar.
+                </p>
+                <p class="contact-response-time">Suele responder en menos de 24 a 48 horas.</p>
+
+                <div class="contact-wrapper">
+                    <!-- Formulario -->
+                    <form class="contact-form" id="contactForm" novalidate>
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" required aria-describedby="nombreError">
+                            <span class="error-message" id="nombreError" role="alert" aria-live="polite"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" required aria-describedby="emailError">
+                            <span class="error-message" id="emailError" role="alert" aria-live="polite"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" required aria-describedby="mensajeError"></textarea>
+                            <span class="error-message" id="mensajeError" role="alert" aria-live="polite"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                        <div id="formMessage" class="form-message" aria-live="polite"></div>
+                    </form>
+
+                    <!-- Enlaces de contacto -->
+                    <div class="contact-info">
+                        <div class="contact-segment">
+                            <h3>Si buscas contratarme en tu empresa...</h3>
+                            <p>
+                                Puedo aportar desarrollo frontend y backend, criterio para producto, atención al detalle en la experiencia de usuario y capacidad para convertir necesidades reales en entregables claros y mantenibles.
+                            </p>
+                        </div>
+                        <div class="contact-segment">
+                            <h3>Si necesitas ayuda con tu negocio...</h3>
+                            <p>
+                                Puedo ayudarte a crear una web de negocio, automatizar pedidos o tareas repetitivas, integrar pagos con Stripe, conectar formularios con procesos internos o montar paneles sencillos para gestionar mejor tu operativa.
+                            </p>
+                        </div>
+                        <div class="contact-links-header">
+                            <h3>Contacto directo</h3>
+                            <a href="#" class="btn btn-outline btn-contact-alt">Reservar una llamada rápida</a>
+                        </div>
+                        <div class="social-links">
+                            <a href="mailto:marcovonarana10@gmail.com" class="social-link" title="Email" aria-label="Enviar correo a Marco">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                </svg>
+                                marcovonarana10@gmail.com
+                            </a>
+                            <a href="https://www.linkedin.com/in/marco-von-f%C3%BCrstenberg-86b6a1234/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn" aria-label="Abrir perfil de LinkedIn de Marco">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                            <a href="https://github.com/comarni?tab=repositories" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub" aria-label="Abrir perfil de GitHub de Marco">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Marco Von Fürstenberg. Todos los derechos reservados.</p>
+            <p>Diseñado y desarrollado con <span class="heart">❤</span> por Marco</p>
+        </div>
+    </footer>
+
+    <button id="backToTop" type="button" aria-label="Volver al inicio de la página" title="Volver arriba">
+        ↑
+    </button>
+
+    <!-- Cursor cubo 3D -->
+    <canvas id="cursorCube" aria-hidden="true"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
