@@ -57,8 +57,8 @@ export default function ProjectsZone({ label, color, projects, labelPosition, st
         const z     = startZ - i * Z_STEP
         const rot   = ROT_AMOUNTS[i % ROT_AMOUNTS.length]
         const scale = SIZES[i % SIZES.length]
-        const screenshotUrl =
-          `https://api.microlink.io/?url=${encodeURIComponent(proj.url)}&screenshot=true&meta=false&embed=screenshot.url`
+        const safeName = proj.name.replace(/[^a-zA-Z0-9_-]/g, '_')
+        const screenshotUrl = `/screenshots/${safeName}.jpg`
         return (
           <CustomImage
             key={proj.name}
