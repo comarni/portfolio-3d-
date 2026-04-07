@@ -1,14 +1,10 @@
 import React from 'react'
 import { Float, Text, Sparkles } from '@react-three/drei'
 
-import CameraController    from './CameraController'
-import ProjectsZone        from './ProjectsZone'
-import TechStackZone       from './TechStackZone'
-import GaussianBackground  from './GaussianBackground'
+import CameraController from './CameraController'
+import ProjectsZone     from './ProjectsZone'
+import TechStackZone    from './TechStackZone'
 import { PROJECTS, OWNER_NAME, CONTACT_LABEL, INTER_FONT } from '../config'
-
-// ── Activa el entorno Gaussian Splat cuando bliss.splat esté en public/ ──────
-const GAUSSIAN_ENABLED = false // ← cámbialo a true después de generar el splat
 
 /**
  * Root scene graph.
@@ -31,16 +27,6 @@ export default function SceneContent() {
   return (
     <>
       <CameraController />
-
-      {/* ── Entorno Gaussian Splat (activar tras generar bliss.splat) ─── */}
-      {GAUSSIAN_ENABLED && (
-        <GaussianBackground
-          url="/bliss.splat"
-          scale={1}
-          position={[0, -2, -10]}
-          opacity={1}
-        />
-      )}
 
       {/* ── Hero ───────────────────────────────────────────────── */}
       <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.2}>
