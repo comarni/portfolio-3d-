@@ -1,9 +1,10 @@
 import React from 'react'
 import { Float, Text, Sparkles } from '@react-three/drei'
 
-import CameraController from './CameraController'
-import ProjectsZone     from './ProjectsZone'
-import TechStackZone    from './TechStackZone'
+import CameraController  from './CameraController'
+import ProjectsZone      from './ProjectsZone'
+import TechStackZone     from './TechStackZone'
+import SpaceBackground   from './SpaceBackground'
 import { PROJECTS, OWNER_NAME, CONTACT_LABEL, INTER_FONT } from '../config'
 
 /**
@@ -27,6 +28,9 @@ export default function SceneContent() {
   return (
     <>
       <CameraController />
+
+      {/* ── Fondo espacial ─────────────────────────────────────── */}
+      <SpaceBackground />
 
       {/* ── Hero ───────────────────────────────────────────────── */}
       <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.2}>
