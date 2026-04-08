@@ -1,39 +1,60 @@
-import React from 'react'
-import { Float, Text, Sparkles } from '@react-three/drei'
+import { useState } from 'react'
+import { Float, Text } from '@react-three/drei'
 
-import CameraController  from './CameraController'
-import ProjectsZone      from './ProjectsZone'
-import TechStackZone     from './TechStackZone'
-import SpaceBackground   from './SpaceBackground'
+import CameraController from './CameraController'
+import ProjectsZone     from './ProjectsZone'
+import TechStackZone    from './TechStackZone'
+import BlissEnvironment from './BlissEnvironment'
+import FolderIcon       from './FolderIcon'
 import { PROJECTS, OWNER_NAME, CONTACT_LABEL, INTER_FONT } from '../config'
 
-/**
- * Root scene graph.
- *
- * World layout (Z axis is depth, X is left/right):
- *
- *   z=+8   Camera start
- *   z= 0   Hero title
- *   z=-12  3D & Creative zone  (11 panels, z -12 → -49)
- *   z=-60  Apps & Tools zone   (12 panels, z -60 → -98)
- *   z=-110 Client Work zone    (14 panels, z -110 → -155)
- *
- *   x=+30  Tech Stack zone     (z -60 → -90, to the right)
- */
+// ── Folder definitions ────────────────────────────────────────────────────────
+// position: where the folder icon sits on the grass
+// labelPos / startZ: passed to ProjectsZone for panel layout
+const FOLDERS = [
+  {
+    key:      'creative',
+    label:    '3D & Creative',
+    color:    '#a78bfa',
+    position: [-3.5, -1.8, -11],
+    labelPos: [-0.5, 3.2, -10],
+    startZ:   -15,
+  },
+  {
+    key:      'apps',
+    label:    'Apps & Tools',
+    color:    '#38bdf8',
+    position: [4, -1.8, -57],
+    labelPos: [0.5, 3.2, -57],
+    startZ:   -62,
+  },
+  {
+    key:      'clients',
+    label:    'Client Work',
+    color:    '#4ade80',
+    position: [-3.5, -1.8, -107],
+    labelPos: [-0.5, 3.2, -106],
+    startZ:   -112,
+  },
+]
+
 export default function SceneContent() {
-  const creative = PROJECTS.filter(p => p.category === 'creative')
-  const apps     = PROJECTS.filter(p => p.category === 'apps')
-  const clients  = PROJECTS.filter(p => p.category === 'clients')
+  const [open, setOpen] = useState({ creative: false, apps: false, clients: false })
+  const toggle = key => setOpen(prev => ({ ...prev, [key]: !prev[key] }))
+
+  const byCategory = {
+    creative: PROJECTS.filter(p => p.category === 'creative'),
+    apps:     PROJECTS.filter(p => p.category === 'apps'),
+    clients:  PROJECTS.filter(p => p.category === 'clients'),
+  }
 
   return (
     <>
       <CameraController />
+      <BlissEnvironment />
 
-      {/* ── Fondo espacial ─────────────────────────────────────── */}
-      <SpaceBackground />
-
-      {/* ── Hero ───────────────────────────────────────────────── */}
-      <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.2}>
+      {/* ── Hero title ───────────────────────────────────────── */}
+      <Float speed={1.4} rotationIntensity={0.12} floatIntensity={0.18}>
         <Text
           font={INTER_FONT}
           fontSize={0.75}
@@ -42,6 +63,8 @@ export default function SceneContent() {
           anchorX="center"
           anchorY="middle"
           position={[0, 1.6, 2]}
+          outlineWidth={0.015}
+          outlineColor="#00000055"
         >
           {OWNER_NAME}
         </Text>
@@ -50,55 +73,44 @@ export default function SceneContent() {
         font={INTER_FONT}
         fontSize={0.13}
         letterSpacing={0.2}
-        color="#555555"
+        color="#eeeeee"
         anchorX="center"
         anchorY="middle"
-        position={[0, 0.95, 2]}
+        position={[0, 0.9, 2]}
+        outlineWidth={0.012}
+        outlineColor="#00000055"
       >
         CREATIVE TECHNOLOGIST · FULL STACK DEVELOPER
       </Text>
 
-      {/* ── Subtle ground grid (orientation reference) ─────────── */}
-      <gridHelper args={[300, 60, '#1a1a1a', '#111111']} position={[0, -2, -80]} />
+      {/* ── Folder icons on the grass ────────────────────────── */}
+      {FOLDERS.map(f => (
+        <FolderIcon
+          key={f.key}
+          label={f.label}
+          color={f.color}
+          position={f.position}
+          isOpen={open[f.key]}
+          onToggle={() => toggle(f.key)}
+        />
+      ))}
 
-      {/* ── Project zones ──────────────────────────────────────── */}
-      <ProjectsZone
-        label="3D & Creative"
-        color="#a78bfa"
-        projects={creative}
-        labelPosition={[0, 2.8, -8]}
-        startZ={-14}
-      />
-      <ProjectsZone
-        label="Apps & Tools"
-        color="#38bdf8"
-        projects={apps}
-        labelPosition={[0, 2.8, -56]}
-        startZ={-62}
-      />
-      <ProjectsZone
-        label="Client Work"
-        color="#4ade80"
-        projects={clients}
-        labelPosition={[0, 2.8, -106]}
-        startZ={-112}
-      />
+      {/* ── Project panels — only visible when folder is open ── */}
+      {FOLDERS.map(f => open[f.key] && (
+        <ProjectsZone
+          key={f.key}
+          label={f.label}
+          color={f.color}
+          projects={byCategory[f.key]}
+          labelPosition={f.labelPos}
+          startZ={f.startZ}
+        />
+      ))}
 
-      {/* ── Tech Stack zone (to the right) ─────────────────────── */}
+      {/* ── Tech Stack zone (always visible, off to the right) ─ */}
       <TechStackZone />
 
-      {/* ── Ambient sparkles across the full scene ─────────────── */}
-      <Sparkles
-        count={350}
-        scale={[25, 12, 170]}
-        size={2}
-        speed={0.25}
-        opacity={0.18}
-        color="#ffffff"
-        position={[5, 0, -85]}
-      />
-
-      {/* ── End-of-scene contact label ──────────────────────────── */}
+      {/* ── End-of-scene contact label ───────────────────────── */}
       <Text
         font={INTER_FONT}
         position={[0, 0.5, -160]}
@@ -107,6 +119,8 @@ export default function SceneContent() {
         color="#ffffff"
         anchorX="center"
         anchorY="middle"
+        outlineWidth={0.02}
+        outlineColor="#00000066"
       >
         {CONTACT_LABEL}
       </Text>

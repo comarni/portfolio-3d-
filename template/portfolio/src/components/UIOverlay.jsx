@@ -13,7 +13,7 @@ export default function UIOverlay() {
   return (
     <div
       id="ui-layer"
-      className="fixed inset-0 pointer-events-none z-50 flex flex-col justify-between p-6 md:p-10 text-zinc-300"
+      className="fixed inset-0 pointer-events-none z-50 flex flex-col justify-between p-6 md:p-10 text-zinc-800"
     >
       {/* ── Top bar ── */}
       <nav className="flex justify-between items-start w-full">

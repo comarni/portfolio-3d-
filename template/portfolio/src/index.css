@@ -5,7 +5,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #050505;
+  background-color: #87ceeb;
   overflow: hidden;
   font-family: 'Inter', sans-serif;
 }
@@ -19,7 +19,7 @@ body {
 #loader {
   position: fixed;
   inset: 0;
-  background: #050505;
+  background: #87ceeb;
   z-index: 9999;
   display: flex;
   justify-content: center;
